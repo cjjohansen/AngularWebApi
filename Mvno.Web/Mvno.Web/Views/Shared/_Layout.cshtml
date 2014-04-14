@@ -1,41 +1,87 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app ="mvnoAngularApp">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+	<meta charset="utf-8" />
+	<meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible" />
+	<meta name="keywords" content="angularjs,SPA,Single Page Application,bootstrap,bootstrap ui" />
+	<meta name="description" content="SPA built using angularjs using Asp.net web api" />
+
+	<title>@ViewBag.Title</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	<link href="~/content/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/content/site.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="shortcut icon" href="favicon.ico" />
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", null, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container" ng-controller="navigationCtrl">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("Mvno Angular", "Index", "Home", null, new { @class = "navbar-brand" })
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li ng-class="{'active':isActive('/register')}"><a href="/register">Register</a></li>
+					<li ng-class="{'active':isActive('/login')}"><a href="/login">Login</a></li>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+					<li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container body-content" >
+		<h1>{{1 + 2}}</h1>
+
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - Mvno AngularJS Application</p>
+		</footer>
+	</div>
+
+	@*@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)*@
+	
+	<!-- 3rd party libraries -->
+	<script src="~/Scripts/angular.min.js"></script>
+	<script src="~/Scripts/angular-route.min.js"></script>
+	<script src="~/Scripts/angular-resource.min.js"></script>
+	<script src="~/Scripts/angular-animate.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.9.0/ui-bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js"></script>
+	<script src="~/scripts/toaster.js"></script>
+	<script src="~/scripts/loading-bar.min.js"></script>
+
+
+	<!-- Load app main script -->
+	<script src="~/App/app.js"></script>
+
+	<!-- Load services -->
+	<script src="app/Register/registerService.js"></script>
+	<script src="app/Register/registerResource.js"></script>
+	<script src="~/App/Login/authService.js"></script>
+	@*<script src="app/services/placesPhotosService.js"></script>
+	<script src="app/services/placesDataService.js"></script>*@
+
+	<!-- Load controllers -->
+	<script src="~/App/Navigation/navigationCtrl.js"></script>
+	<script src="~/App/Register/registerCtrl.js"></script>
+	<script src="~/App/Login/loginCtrl.js"></script>
+	@*<script src="~/App/About/aboutCtrl.js"></script>*@
+
+	<!-- Load custom filters -->
+	@*<script src="app/filters/placeNameCategoryFilter.js"></script>*@
+
+	<!-- Load custom directives -->
+	@*<script src="app/directives/fsUnique.js"></script>*@
+
 </body>
 </html>

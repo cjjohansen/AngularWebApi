@@ -1,12 +1,7 @@
-﻿
-@{
-	ViewBag.Title = "Register";
-}
+﻿<h1>Register</h1>
 
-<h2>Register</h2>
-
-<div class="container" id="register" ng-controller ="registerCtrl">
-	<form name="registrationForm" ng-submit="submitForm(registrationForm.$valid)" novalidate>
+<div class="container" id="register" ng-controller="registerCtrl">
+	<form name="registrationForm" ng-submit="registerUser(user, registrationForm.$valid)" novalidate>
 		<!-- NAME -->
 		<div class="form-group" ng-class="{ 'has-error' : registrationForm.name.$invalid && !registrationForm.name.$pristine }">
 			<label>Name*</label>
